@@ -1,12 +1,13 @@
-set CARGO_HOME=%CONDA_PREFIX%\.cargo
+set CARGO_HOME=%CONDA_PREFIX%\.cargo.win
 set CARGO_CONFIG=%CARGO_HOME%\config
 set RUSTUP_HOME=%CARGO_HOME%\rustup
 set PATH=%CARGO_HOME%\bin:%PATH%
 
 if not exist "%CARGO_HOME%" mkdir "%CARGO_HOME%"
 
+echo [target.x86_64-pc-windows-msvc]>> %CARGO_CONFIG%
 if [%LD%] == [] (
-    set "CARGO_TARGET_X86_64_PC_WINDOWS_MSVC_LINKER=link.exe"
+    echo linker = "link.exe">> %CARGO_CONFIG%
 ) else (
-    set "CARGO_TARGET_X86_64_PC_WINDOWS_MSVC_LINKER=%LD%"
+    echo linker = "%LD%">> %CARGO_CONFIG%
 )
