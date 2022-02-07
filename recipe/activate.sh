@@ -15,7 +15,7 @@ if [[ $(uname) == Darwin ]]; then
 fi
 
 echo "[target.aarch64-apple-darwin]" >> ${CARGO_CONFIG}
-echo "linker = \"${CONDA_PREFIX}/bin/arm64-apple-darwin13.4.0-clang\"" >> ${CARGO_CONFIG}
+echo "linker = \"${CONDA_PREFIX}/bin/arm64-apple-darwin20.0.0-clang\"" >> ${CARGO_CONFIG}
 echo "[target.x86_64-apple-darwin]" >> ${CARGO_CONFIG}
 echo "linker = \"${CONDA_PREFIX}/bin/x86_64-apple-darwin13.4.0-clang\"" >> ${CARGO_CONFIG}
 echo "[target.i686-unknown-linux-gnu]" >> ${CARGO_CONFIG}
@@ -32,11 +32,11 @@ echo "[target.'cfg(...)']" >> ${CARGO_CONFIG}
 echo "rustflags = [\"-C\", \"link-flags=-Wl,-rpath-link=${CONDA_PREFIX}/lib,-rpath=${CONDA_PREFIX}/lib\", \"-C\", \"opt-level=z\"]" >> ${CARGO_CONFIG}
 
 
-echo "[target.arm64-apple-darwin13.4.0]" > ${CARGO_CONFIG}
-echo "linker = \"${CONDA_PREFIX}/bin/arm64-apple-darwin13.4.0-cc\"" >> ${CARGO_CONFIG}
+echo "[target.arm64-apple-darwin20.0.0]" > ${CARGO_CONFIG}
+echo "linker = \"${CONDA_PREFIX}/bin/arm64-apple-darwin20.0.0-cc\"" >> ${CARGO_CONFIG}
 echo "rustflags = [\"-C\", \"link-arg=-Wl,-rpath,${CONDA_PREFIX}/lib\", \"-C\", \"opt-level=z\"]" >> ${CARGO_CONFIG}
 echo "[target.aarch64-apple-darwin]" >> ${CARGO_CONFIG}
-echo "linker = \"${CONDA_PREFIX}/bin/arm64-apple-darwin13.4.0-clang\"" >> ${CARGO_CONFIG}
+echo "linker = \"${CONDA_PREFIX}/bin/arm64-apple-darwin20.0.0-clang\"" >> ${CARGO_CONFIG}
 echo "rustflags = [\"-C\", \"link-arg=-Wl,-rpath,${CONDA_PREFIX}/lib\", \"-C\", \"opt-level=z\"]" >> ${CARGO_CONFIG}
 
 echo "[target.x86_64-apple-darwin13.4.0]" > ${CARGO_CONFIG}
