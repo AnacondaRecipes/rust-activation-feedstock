@@ -10,7 +10,7 @@ build:
 outputs:
   - name: rust_{{ target_platform }}
     script: build.sh  # [unix]
-    script: bld.bat  # [win]
+    script: bld-msvc.bat  # [win]
     build:  # [win and int(float(vc)) != 14]
       skip: True  # [win and int(float(vc)) != 14]
     requirements:
@@ -26,7 +26,7 @@ outputs:
         - cargo --help
         - time bash ./forge_test.sh  # [not win]
   - name: rust-gnu_{{ target_platform }}  # [win]
-    script: bld.bat  # [win]
+    script: bld-gnu.bat  # [win]
     requirements:  # [win]
       run:  # [win]
         - rust-gnu >={{ version }}  # [win]
