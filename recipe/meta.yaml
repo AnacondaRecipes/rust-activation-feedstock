@@ -47,7 +47,7 @@ about:
   description: |
     Rust is a systems programming language that runs blazingly fast,
     prevents segfaults, and guarantees thread safety.
-  doc_url: https://doc.rust-lang.org/
+  doc_url: https://www.rust-lang.org/en-US/documentation.html
   doc_source_url: https://github.com/rust-lang/rust/tree/master/src/doc
   dev_url: https://github.com/rust-lang
 
