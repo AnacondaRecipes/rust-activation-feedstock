@@ -41,7 +41,7 @@ outputs:
 about:
   home: https://www.rust-lang.org
   summary: A safe systems programming language (conda activation scripts)
-  license: BSD
+  license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
   description: |
