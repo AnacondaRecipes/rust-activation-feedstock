@@ -54,3 +54,8 @@ about:
 extra:
   recipe-maintainers:
     - mingwandroid
+  # For activation scripts, compilers must be in the run section
+  # The compiler function is inappropriate here because a specific version is needed
+  skip-lints:
+    - compilers_must_be_in_build
+    - should_use_compilers
