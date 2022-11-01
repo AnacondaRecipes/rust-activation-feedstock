@@ -44,11 +44,12 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
+  license_url: https://github.com/AnacondaRecipes/rust-activation-feedstock/blob/master/LICENSE.txt
   description: |
     Rust is a systems programming language that runs blazingly fast,
     prevents segfaults, and guarantees thread safety.
-  doc_url: https://www.rust-lang.org/en-US/documentation.html
-  doc_source_url: https://github.com/rust-lang/rust/tree/master/src/doc
+  doc_url: https://www.rust-lang.org/learn
+  doc_source_url: https://github.com/rust-lang/rust/tree/{{ version }}/src/doc
   dev_url: https://github.com/rust-lang
 
 extra:
