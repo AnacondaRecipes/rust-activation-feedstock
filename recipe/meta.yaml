@@ -1,4 +1,4 @@
-{% set version = "1.56.0" %}
+{% set version = "1.64.0" %}
 
 package:
   name: rust_{{ target_platform }}-suite
@@ -10,7 +10,7 @@ build:
 outputs:
   - name: rust_{{ target_platform }}
     script: build.sh  # [unix]
-    script: bld.bat  # [win]
+    script: bld-msvc.bat  # [win]
     build:  # [win and int(float(vc)) != 14]
       skip: True  # [win and int(float(vc)) != 14]
     requirements:
@@ -26,7 +26,7 @@ outputs:
         - cargo --help
         - time bash ./forge_test.sh  # [not win]
   - name: rust-gnu_{{ target_platform }}  # [win]
-    script: bld.bat  # [win]
+    script: bld-gnu.bat  # [win]
     requirements:  # [win]
       run:  # [win]
         - rust-gnu >={{ version }}  # [win]
@@ -41,16 +41,22 @@ outputs:
 about:
   home: https://www.rust-lang.org
   summary: A safe systems programming language (conda activation scripts)
-  license: BSD
+  license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
+  license_url: https://github.com/AnacondaRecipes/rust-activation-feedstock/blob/master/LICENSE.txt
   description: |
     Rust is a systems programming language that runs blazingly fast,
     prevents segfaults, and guarantees thread safety.
-  doc_url: https://doc.rust-lang.org/
-  doc_source_url: https://github.com/rust-lang/rust/tree/master/src/doc
+  doc_url: https://www.rust-lang.org/learn
+  doc_source_url: https://github.com/rust-lang/rust/tree/{{ version }}/src/doc
   dev_url: https://github.com/rust-lang
 
 extra:
   recipe-maintainers:
     - mingwandroid
+  # For activation scripts, compilers must be in the run section
+  # The compiler function is inappropriate here because a specific version is needed
+  skip-lints:
+    - compilers_must_be_in_build
+    - should_use_compilers
