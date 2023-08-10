@@ -1,4 +1,4 @@
-{% set version = "1.64.0" %}
+{% set version = "1.71.1" %}
 
 package:
   name: rust_{{ target_platform }}-suite
