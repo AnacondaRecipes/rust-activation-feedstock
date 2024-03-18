@@ -11,7 +11,7 @@ outputs:
   - name: rust_{{ target_platform }}
     script: build.sh  # [unix]
     script: bld-msvc.bat  # [win]
-    build:  # [win and int(float(vc)) != 14]
+    build:
       skip: True  # [win and int(float(vc)) != 14]
       run_exports: # [osx and x86_64]
           strong_constrains: # [osx and x86_64]
