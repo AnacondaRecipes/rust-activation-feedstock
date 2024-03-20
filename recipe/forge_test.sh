@@ -1,11 +1,5 @@
 #!/bin/bash -e -x
 
-## TODO: remove the following `unset` lines, once the following issue in `conda-build` is resolved:
-##       <https://github.com/conda/conda-build/issues/2255>
-
-unset REQUESTS_CA_BUNDLE
-unset SSL_CERT_FILE
-
 rustc --help
 rustdoc --help
 cargo --help
@@ -15,13 +9,11 @@ if [[ ${target_platform} =~ linux.*390x.* ]]; then
    echo "s390x-conda_cos7-linux-gnu-cc \"\$@\""   >> ./cc
 elif [[ ${target_platform} =~ linux.*aarch64* ]]; then
   echo "aarch64-conda-linux-gnu-cc \"\$@\""   >> ./cc
-elif [[ ${target_platform} =~ linux.*powerpc* ]]; then
-  echo "powerpc64le-conda_cos7-linux-gnu-cc \"\$@\""   >> ./cc
 elif [[ ${target_platform} =~ linux.* ]]; then
   echo "x86_64-conda_cos7-linux-gnu-cc \"\$@\""   >> ./cc
 elif [[ ${target_platform} == osx-64 ]]; then
   echo "x86_64-apple-darwin13.4.0-clang \"\$@\""  >> ./cc
-  export CONDA_BUILD_SYSROOT=/opt/MacOSX10.10.sdk
+  export CONDA_BUILD_SYSROOT=/opt/MacOSX10.12.sdk
 elif [[ ${target_platform} == osx-arm64 ]]; then
   echo "arm64-apple-darwin20.0.0-clang \"\$@\""  >> ./cc
 fi

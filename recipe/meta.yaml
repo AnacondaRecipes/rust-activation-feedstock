@@ -1,4 +1,4 @@
-{% set version = "1.71.1" %}
+{% set version = "1.76.0" %}
 
 package:
   name: rust_{{ target_platform }}-suite
@@ -11,8 +11,11 @@ outputs:
   - name: rust_{{ target_platform }}
     script: build.sh  # [unix]
     script: bld-msvc.bat  # [win]
-    build:  # [win and int(float(vc)) != 14]
+    build:
       skip: True  # [win and int(float(vc)) != 14]
+      run_exports: # [osx and x86_64]
+          strong_constrains: # [osx and x86_64]
+            - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.12") }}  # [osx and x86_64]
     requirements:
       run:
         - rust >={{ version }}
@@ -44,12 +47,10 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
-  license_url: https://github.com/AnacondaRecipes/rust-activation-feedstock/blob/master/LICENSE.txt
   description: |
     Rust is a systems programming language that runs blazingly fast,
     prevents segfaults, and guarantees thread safety.
   doc_url: https://www.rust-lang.org/learn
-  doc_source_url: https://github.com/rust-lang/rust/tree/{{ version }}/src/doc
   dev_url: https://github.com/rust-lang
 
 extra:
