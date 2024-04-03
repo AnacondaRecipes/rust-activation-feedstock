@@ -1,4 +1,4 @@
-{% set version = "1.76.0" %}
+{% set version = "1.76.0.dev20231115" %}
 
 package:
   name: rust_{{ target_platform }}-suite
@@ -18,7 +18,7 @@ outputs:
             - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.12") }}  # [osx and x86_64]
     requirements:
       run:
-        - rust >={{ version }}
+        - rust >={{ version }}.0a0,<{{ version }}
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
     test:
@@ -32,7 +32,7 @@ outputs:
     script: bld-gnu.bat  # [win]
     requirements:  # [win]
       run:  # [win]
-        - rust-gnu >={{ version }}  # [win]
+        - rust-gnu >={{ version }}.0a0,<{{ version }}  # [win]
         - m2w64-toolchain  # [win]
     test:  # [win]
       files:  # [win]
