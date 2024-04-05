@@ -1,0 +1,4 @@
+upload_channels:
+  - sfe1ed40
+channels:
+  - http://staging.continuum.io/prefect/fs/rust-feedstock/pr8/45baf33
