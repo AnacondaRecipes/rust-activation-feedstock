@@ -35,7 +35,7 @@ outputs:
     script: bld-gnu.bat  # [win]
     requirements:  # [win]
       run:  # [win]
-        - rust-gnu >{{ lower_bound_version }},<{{ version_stable }}  # [win]
+        - rust-gnu ==1.79.0.dev20240328  # [win]
         - m2w64-toolchain  # [win]
     test:  # [win]
       files:  # [win]
