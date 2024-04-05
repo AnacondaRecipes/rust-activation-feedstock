@@ -1,6 +1,6 @@
-{% set lower_bound_version = "1.75.0" %}
-{% set version_stable = "1.76.0" %}
-{% set version = version_stable + ".dev20231115" %}
+{% set lower_bound_version = "1.79.0.dev0" %}
+{% set version_stable = "1.79.0" %}
+{% set version = version_stable + ".dev20240328" %}
 
 package:
   name: rust_{{ target_platform }}-suite
