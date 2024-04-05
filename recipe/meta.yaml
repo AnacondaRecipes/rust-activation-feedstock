@@ -8,6 +8,7 @@ package:
 
 build:
   number: 0
+  skip: True  # [s390x]
 
 outputs:
   - name: rust_{{ target_platform }}
@@ -53,7 +54,7 @@ about:
     Rust is a systems programming language that runs blazingly fast,
     prevents segfaults, and guarantees thread safety.
   doc_url: https://www.rust-lang.org/learn
-  dev_url: https://github.com/rust-lang
+  dev_url: https://github.com/rust-lang/rust
 
 extra:
   recipe-maintainers:
