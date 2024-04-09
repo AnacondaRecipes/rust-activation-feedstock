@@ -1,4 +1,6 @@
-{% set version = "1.76.0" %}
+{% set lower_bound_version = "1.79.0.dev0" %}
+{% set version_stable = "1.79.0" %}
+{% set version = version_stable + ".dev20240328" %}
 
 package:
   name: rust_{{ target_platform }}-suite
@@ -6,6 +8,7 @@ package:
 
 build:
   number: 0
+  skip: True  # [s390x]
 
 outputs:
   - name: rust_{{ target_platform }}
@@ -18,7 +21,7 @@ outputs:
             - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.12") }}  # [osx and x86_64]
     requirements:
       run:
-        - rust >={{ version }}
+        - rust >{{ lower_bound_version }},<{{ version_stable }}
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
     test:
@@ -32,7 +35,7 @@ outputs:
     script: bld-gnu.bat  # [win]
     requirements:  # [win]
       run:  # [win]
-        - rust-gnu >={{ version }}  # [win]
+        - rust-gnu =={{ version }}  # [win]
         - m2w64-toolchain  # [win]
     test:  # [win]
       files:  # [win]
@@ -51,7 +54,7 @@ about:
     Rust is a systems programming language that runs blazingly fast,
     prevents segfaults, and guarantees thread safety.
   doc_url: https://www.rust-lang.org/learn
-  dev_url: https://github.com/rust-lang
+  dev_url: https://github.com/rust-lang/rust
 
 extra:
   recipe-maintainers:
