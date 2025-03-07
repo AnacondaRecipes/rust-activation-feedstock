@@ -19,11 +19,13 @@ else
     rust_arch=""
 fi
 
+# set flags for arch-dependent rust-std toolchain
 if [[ -n "$rust_arch" && -d ${CONDA_PREFIX}/lib/rustlib/${rust_arch} ]]; then
     export RUSTFLAGS="-L ${CONDA_PREFIX}/lib/rustlib/${rust_arch}/lib"
 fi
 
-wasm32dir = "${CONDA_PREFIX}/lib/rustlib/wasm32-wasip1"
+# detect wasm32 toolchain
+wasm32dir = "${CONDA_PREFIX}/lib/rustlib/wasm32-wasip*"
 if [[ -d ${wasm32dir} ]]; then
     export RUSTFLAGS="-L ${CONDA_PREFIX}/lib/rustlib/${wasm32dir}/lib"
 fi
