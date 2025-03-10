@@ -27,7 +27,7 @@ fi
 # detect wasm32 toolchain
 wasm32dir = "${CONDA_PREFIX}/lib/rustlib/wasm32-wasip*"
 if [[ -d ${wasm32dir} ]]; then
-    export RUSTFLAGS="-L ${CONDA_PREFIX}/lib/rustlib/${wasm32dir}/lib"
+    export RUSTFLAGS="-L ${wasm32dir}/lib"
 fi
 
 [[ -d ${CARGO_HOME} ]] || mkdir -p ${CARGO_HOME}
