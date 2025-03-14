@@ -22,6 +22,7 @@ case "$(uname -sp)" in
     ;;
 esac
 
+export RUSTFLAGS=""
 # set flags for arch-dependent rust-std toolchain
 if [[ -n "$rust_arch" && -d ${CONDA_PREFIX}/lib/rustlib/${rust_arch} ]]; then
     export RUSTFLAGS="-L ${CONDA_PREFIX}/lib/rustlib/${rust_arch}/lib"
