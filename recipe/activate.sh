@@ -4,20 +4,23 @@ export CARGO_HOME=${CONDA_PREFIX}/.cargo.$(uname)
 export CARGO_CONFIG=${CARGO_HOME}/config
 export RUSTUP_HOME=${CARGO_HOME}/rustup
 
-OS=$(uname)
-ARCH=$(uname -p)
-
-if [[ "$OS" == "Linux" && "$ARCH" == "aarch64" ]]; then
+case "$(uname -sp)" in
+"Linux aarch64")
     rust_arch="aarch64-unknown-linux-gnu"
-elif [[ "$OS" == "Linux" && "$ARCH" == "x86_64" ]]; then
+    ;;
+"Linux x86_64")
     rust_arch="x86_64-unknown-linux-gnu"
-elif [[ "$OS" == "Darwin" && "$ARCH" == "i386" ]]; then
+    ;;
+"Darwin i386")
     rust_arch="x86_64-apple-darwin"
-elif [[ "$OS" == "Darwin" && "$ARCH" == "arm" ]]; then
+    ;;
+"Darwin arm")
     rust_arch="aarch64-apple-darwin"
-else
+    ;;
+*)
     rust_arch=""
-fi
+    ;;
+esac
 
 # set flags for arch-dependent rust-std toolchain
 if [[ -n "$rust_arch" && -d ${CONDA_PREFIX}/lib/rustlib/${rust_arch} ]]; then
