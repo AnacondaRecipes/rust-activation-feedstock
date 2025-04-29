@@ -61,3 +61,4 @@ extra:
   skip-lints:
     - compilers_must_be_in_build
     - should_use_compilers
+    - output_script_name_default
