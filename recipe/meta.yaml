@@ -5,7 +5,7 @@ package:
   version: {{ version }}
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: rust_{{ target_platform }}
@@ -61,3 +61,4 @@ extra:
   skip-lints:
     - compilers_must_be_in_build
     - should_use_compilers
+    - output_script_name_default

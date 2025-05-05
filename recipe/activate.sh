@@ -4,6 +4,39 @@ export CARGO_HOME=${CONDA_PREFIX}/.cargo.$(uname)
 export CARGO_CONFIG=${CARGO_HOME}/config
 export RUSTUP_HOME=${CARGO_HOME}/rustup
 
+case "$(uname -sp)" in
+"Linux aarch64")
+    rust_arch="aarch64-unknown-linux-gnu"
+    ;;
+"Linux x86_64")
+    rust_arch="x86_64-unknown-linux-gnu"
+    ;;
+"Darwin i386")
+    rust_arch="x86_64-apple-darwin"
+    ;;
+"Darwin arm")
+    rust_arch="aarch64-apple-darwin"
+    ;;
+*)
+    rust_arch=""
+    ;;
+esac
+
+export RUSTFLAGS=""
+# set flags for arch-dependent rust-std toolchain
+if [[ -n "$rust_arch" && -d ${CONDA_PREFIX}/lib/rustlib/${rust_arch} ]]; then
+    export RUSTFLAGS="-L ${CONDA_PREFIX}/lib/rustlib/${rust_arch}/lib"
+fi
+
+# detect wasm32 toolchain
+for PATH_ENDING in 1 2; do
+    wasm32dir="${CONDA_PREFIX}/lib/rustlib/wasm32-wasip${PATH_ENDING}"
+    if [[ -d ${wasm32dir} ]]; then
+        export RUSTFLAGS="${RUSTFLAGS} -L ${wasm32dir}/lib"
+        break
+    fi
+done
+
 [[ -d ${CARGO_HOME} ]] || mkdir -p ${CARGO_HOME}
 
 if [[ $(uname) == Darwin ]]; then
