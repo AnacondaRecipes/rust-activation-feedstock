@@ -1,4 +1,5 @@
-# !! update of rust-activation version should be carried out together with rust version update !! 
+# !! update of rust-activation version should be carried out together with rust version update !!
+# https://github.com/AnacondaRecipes/rust-feedstock
 {% set version = "1.87.0" %}
 
 package:
