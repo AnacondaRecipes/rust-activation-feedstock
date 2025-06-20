@@ -1,11 +1,12 @@
-{% set version = "1.82.0" %}
+# !! update of rust-activation version should be carried out together with rust version update !! 
+{% set version = "1.87.0" %}
 
 package:
   name: rust_{{ target_platform }}-suite
   version: {{ version }}
 
 build:
-  number: 1
+  number: 0
 
 outputs:
   - name: rust_{{ target_platform }}
