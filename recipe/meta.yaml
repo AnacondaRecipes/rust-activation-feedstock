@@ -1,6 +1,6 @@
 # !! update of rust-activation version should be carried out together with rust version update !!
 # https://github.com/AnacondaRecipes/rust-feedstock
-{% set version = "1.87.0" %}
+{% set version = "1.89.0" %}
 
 package:
   name: rust_{{ target_platform }}-suite
@@ -15,20 +15,16 @@ outputs:
     script: bld-msvc.bat  # [win]
     build:
       skip: True  # [win and int(float(vc)) != 14]
-      run_exports: # [osx and x86_64]
-          strong_constrains: # [osx and x86_64]
-            - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.12") }}  # [osx and x86_64]
     requirements:
       run:
         - rust >={{ version }}
+        - {{ stdlib('c') }}
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
     test:
       files:
         - forge_test.sh  # [not win]
       commands:
-        - rustc --help
-        - cargo --help
         - time bash ./forge_test.sh  # [not win]
   - name: rust-gnu_{{ target_platform }}  # [win]
     script: bld-gnu.bat  # [win]
