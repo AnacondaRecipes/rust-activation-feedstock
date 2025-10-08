@@ -7,7 +7,7 @@ package:
   version: {{ version }}
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: rust_{{ target_platform }}
@@ -41,10 +41,10 @@ outputs:
 
 about:
   home: https://www.rust-lang.org
-  summary: A safe systems programming language (conda activation scripts)
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
+  summary: A safe systems programming language (conda activation scripts)
   description: |
     Rust is a systems programming language that runs blazingly fast,
     prevents segfaults, and guarantees thread safety.
