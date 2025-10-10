@@ -1,23 +1,24 @@
 # !! update of rust-activation version should be carried out together with rust version update !!
 # https://github.com/AnacondaRecipes/rust-feedstock
-{% set version = "1.89.0" %}
+{% set date = "2025-05-28" %}
+{% set version = "1.89.0_" ~ date.replace('-', '_') %}
 
 package:
-  name: rust_{{ target_platform }}-suite
+  name: rust-nightly_{{ target_platform }}
   version: {{ version }}
 
 build:
   number: 1
 
 outputs:
-  - name: rust_{{ target_platform }}
+  - name: rust-nightly_{{ target_platform }}
     script: build.sh  # [unix]
     script: bld-msvc.bat  # [win]
     build:
       skip: True  # [win and int(float(vc)) != 14]
     requirements:
       run:
-        - rust >={{ version }}
+        - rust-nightly >={{ version }}
         - {{ stdlib('c') }}
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
@@ -26,11 +27,11 @@ outputs:
         - forge_test.sh  # [not win]
       commands:
         - time bash ./forge_test.sh  # [not win]
-  - name: rust-gnu_{{ target_platform }}  # [win]
+  - name: rust-nightly-gnu_{{ target_platform }}  # [win]
     script: bld-gnu.bat  # [win]
     requirements:  # [win]
       run:  # [win]
-        - rust-gnu >={{ version }}  # [win]
+        - rust-gnu-nightly >={{ version }}  # [win]
         - m2w64-toolchain  # [win]
     test:  # [win]
       files:  # [win]
