@@ -1,14 +1,14 @@
 # !! update of rust-activation version should be carried out together with rust version update !!
 # https://github.com/AnacondaRecipes/rust-feedstock
-{% set date = "2025-05-28" %}
-{% set version = "1.89.0_" ~ date.replace('-', '_') %}
+{% set date = "2025-10-13" %}
+{% set version = "1.92.0_" ~ date.replace('-', '_') %}
 
 package:
   name: rust-nightly_{{ target_platform }}
   version: {{ version }}
 
 build:
-  number: 1
+  number: 0
 
 outputs:
   - name: rust-nightly_{{ target_platform }}
