@@ -1,13 +1,13 @@
 # !! update of rust-activation version should be carried out together with rust version update !!
 # https://github.com/AnacondaRecipes/rust-feedstock
-{% set version = "1.89.0" %}
+{% set version = "1.90.0" %}
 
 package:
   name: rust_{{ target_platform }}-suite
   version: {{ version }}
 
 build:
-  number: 3
+  number: 0
 
 outputs:
   - name: rust_{{ target_platform }}
@@ -26,18 +26,18 @@ outputs:
         - forge_test.sh  # [not win]
       commands:
         - time bash ./forge_test.sh  # [not win]
-  - name: rust-gnu_{{ target_platform }}  # [win]
-    script: bld-gnu.bat  # [win]
-    requirements:  # [win]
-      run:  # [win]
-        - rust-gnu >={{ version }}  # [win]
-        - m2w64-toolchain  # [win]
-    test:  # [win]
-      files:  # [win]
-        - forge_test.sh  # [win]
-      commands:  # [win]
-        - rustc --help  # [win]
-        - cargo --help  # [win]
+  - name: rust-gnu_{{ target_platform }}  # [win and x86_64]
+    script: bld-gnu.bat  # [win and x86_64]
+    requirements:  # [win and x86_64]
+      run:  # [win and x86_64]
+        - rust-gnu >={{ version }}  # [win and x86_64]
+        - m2w64-toolchain  # [win and x86_64]
+    test:  # [win and x86_64]
+      files:  # [win and x86_64]
+        - forge_test.sh  # [win and x86_64]
+      commands:  # [win and x86_64]
+        - rustc --help  # [win and x86_64]
+        - cargo --help  # [win and x86_64]
 
 about:
   home: https://www.rust-lang.org
