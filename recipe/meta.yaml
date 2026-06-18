@@ -7,7 +7,7 @@ package:
   version: {{ version }}
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: rust_{{ target_platform }}
@@ -26,18 +26,21 @@ outputs:
         - forge_test.sh  # [not win]
       commands:
         - time bash ./forge_test.sh  # [not win]
-  - name: rust-gnu_{{ target_platform }}  # [win and x86_64]
-    script: bld-gnu.bat  # [win and x86_64]
-    requirements:  # [win and x86_64]
-      run:  # [win and x86_64]
-        - rust-gnu >={{ version }}  # [win and x86_64]
-        - m2w64-toolchain  # [win and x86_64]
-    test:  # [win and x86_64]
-      files:  # [win and x86_64]
-        - forge_test.sh  # [win and x86_64]
-      commands:  # [win and x86_64]
-        - rustc --help  # [win and x86_64]
-        - cargo --help  # [win and x86_64]
+
+  - name: rust-gnu_{{ target_platform }}
+    build:
+      skip: True  # [not win64]
+    script: bld-gnu.bat
+    requirements:
+      run:
+        - rust-gnu >={{ version }}
+        - m2w64-toolchain
+    test:
+      files:
+        - forge_test.sh
+      commands:
+        - rustc --help
+        - cargo --help
 
 about:
   home: https://www.rust-lang.org
