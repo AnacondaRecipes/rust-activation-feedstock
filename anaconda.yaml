@@ -1,0 +1,17 @@
+anaconda_config_version: 1
+upstream_sources:
+  - github:
+      identifier: rust-lang/rust
+      use_max_tag: true
+      exclude_regex: (?i)^(?=.*(?:(?<=\d)rc\d*|(?<=\d)dev\d+|(?:^|[-._])(?:alpha|beta|gamma|pre|preview)(?:\d+)?|[-._]rc\d+|(?:^|[-._])dev\d+|(?:\d+\.)+\d+[ab]\d*)).+$
+      from_pattern: ^v?(\d+(?:\.\d+)*.*)$
+      to_pattern: \1
+    packages:
+      - rust_linux-64
+      - rust_linux-aarch64
+      - rust_linux-ppc64le
+      - rust_linux-s390x
+      - rust_osx-64
+      - rust_osx-arm64
+      - rust_win-64
+      - rust-gnu_win-64
