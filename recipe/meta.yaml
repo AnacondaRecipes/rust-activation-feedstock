@@ -63,5 +63,3 @@ extra:
     - compilers_must_be_in_build
     - should_use_compilers
     - output_script_name_default
-    - missing_source_section
-    - linter_failure
