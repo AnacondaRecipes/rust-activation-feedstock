@@ -14,4 +14,3 @@ upstream_sources:
       - rust_osx-64
       - rust_osx-arm64
       - rust_win-64
-      - rust-gnu_win-64
