@@ -8,7 +8,7 @@ package:
   version: {{ version }}
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: rust-nightly_{{ target_platform }}
@@ -32,7 +32,8 @@ outputs:
     requirements:  # [win]
       run:  # [win]
         - rust-gnu-nightly >={{ version }}  # [win]
-        - m2w64-toolchain  # [win]
+        - m2w64-toolchain  # [win64]
+        - clangarm64-clang-toolchain  # [win and arm64]
     test:  # [win]
       files:  # [win]
         - forge_test.sh  # [win]
