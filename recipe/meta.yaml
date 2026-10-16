@@ -7,7 +7,7 @@ package:
   version: {{ version }}
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: rust_{{ target_platform }}
@@ -17,7 +17,7 @@ outputs:
       skip: True  # [win and int(float(vc)) != 14]
     requirements:
       run:
-        - rust >={{ version }}
+        - rust =={{ version }}
         - {{ stdlib('c') }}
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
@@ -33,7 +33,7 @@ outputs:
     script: bld-gnu.bat
     requirements:
       run:
-        - rust-gnu >={{ version }}
+        - rust-gnu =={{ version }}
         - m2w64-toolchain
     test:
       files:
