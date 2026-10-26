@@ -7,7 +7,7 @@ package:
   version: {{ version }}
 
 build:
-  number: 2
+  number: 3
 
 outputs:
   - name: rust_{{ target_platform }}
@@ -18,9 +18,11 @@ outputs:
     requirements:
       run:
         - rust =={{ version }}
-        - {{ stdlib('c') }}
-        - {{ compiler('c') }}
-        - {{ compiler('cxx') }}
+        - {{ c_compiler }}_{{ target_platform }}
+        - {{ cxx_compiler }}_{{ target_platform }}
+        - sysroot_{{ target_platform }} >={{ c_stdlib_version }}  # [linux]
+        - macosx_deployment_target_{{ target_platform }} >={{ c_stdlib_version }}  # [osx]
+        - vs_{{ target_platform }} >=2019  # [win]
     test:
       files:
         - forge_test.sh  # [not win]
