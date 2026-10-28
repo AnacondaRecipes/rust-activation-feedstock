@@ -8,7 +8,7 @@ package:
   version: {{ version }}
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: rust-nightly_{{ target_platform }}
@@ -18,7 +18,7 @@ outputs:
       skip: True  # [win and int(float(vc)) != 14]
     requirements:
       run:
-        - rust-nightly >={{ version }}
+        - rust-nightly =={{ version }}
         - {{ stdlib('c') }}
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
@@ -29,9 +29,11 @@ outputs:
         - time bash ./forge_test.sh  # [not win]
   - name: rust-nightly-gnu_{{ target_platform }}  # [win]
     script: bld-gnu.bat  # [win]
+    build: # [win]
+      skip: true  # [win and not x86_64]
     requirements:  # [win]
       run:  # [win]
-        - rust-gnu-nightly >={{ version }}  # [win]
+        - rust-gnu-nightly =={{ version }}  # [win]
         - m2w64-toolchain  # [win]
     test:  # [win]
       files:  # [win]
