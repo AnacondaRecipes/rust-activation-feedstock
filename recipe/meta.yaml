@@ -28,9 +28,9 @@ outputs:
       commands:
         - time bash ./forge_test.sh  # [not win]
   - name: rust-nightly-gnu_{{ target_platform }}  # [win]
-    build:
-      skip: True # [not (win and x86_64)]
     script: bld-gnu.bat  # [win]
+    build: # [win]
+      skip: true  # [not (win and x86_64)]
     requirements:  # [win]
       run:  # [win]
         - rust-gnu-nightly =={{ version }}  # [win]
