@@ -29,7 +29,7 @@ outputs:
         - time bash ./forge_test.sh  # [not win]
   - name: rust-nightly-gnu_{{ target_platform }}  # [win]
     build:
-      skip: True # [not win64]
+      skip: True # [not win and x86_64]
     script: bld-gnu.bat  # [win]
     requirements:  # [win]
       run:  # [win]
