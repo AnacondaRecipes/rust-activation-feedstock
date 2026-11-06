@@ -7,7 +7,7 @@ package:
   version: {{ version }}
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: rust_{{ target_platform }}
@@ -28,6 +28,8 @@ outputs:
         - forge_test.sh  # [not win]
       commands:
         - time bash ./forge_test.sh  # [not win]
+        - if not exist "%CARGO_CONFIG%" exit 1  # [win]
+        - cargo --list
 
   - name: rust-gnu_{{ target_platform }}
     build:
