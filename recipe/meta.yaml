@@ -26,10 +26,12 @@ outputs:
     test:
       files:
         - forge_test.sh  # [not win]
+        - test-msvc.bat  # [win]
       commands:
         - time bash ./forge_test.sh  # [not win]
-        - if not exist "%CARGO_CONFIG%" exit 1  # [win]
-        - cargo --list
+        - call test-msvc.bat x86_64-pc-windows-msvc X86_64_PC_WINDOWS_MSVC win-64  # [win64]
+        - call test-msvc.bat aarch64-pc-windows-msvc AARCH64_PC_WINDOWS_MSVC win-arm64  # [win and arm64]
+        - cargo --list  # [not win]
 
   - name: rust-gnu_{{ target_platform }}
     build:

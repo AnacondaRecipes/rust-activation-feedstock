@@ -16,7 +16,7 @@ set "RUSTDOC=%CONDA_PREFIX%\Library\bin\rustdoc"
 
 if not defined CARGO_INSTALL_ROOT set "CARGO_INSTALL_ROOT=%CONDA_PREFIX%\Library"
 
-if [%LD%] == [] (
+if not defined LD (
     set "CARGO_TARGET_@rust_arch_env@_LINKER=link.exe"
 ) else (
     set "CARGO_TARGET_@rust_arch_env@_LINKER=%LD%"
