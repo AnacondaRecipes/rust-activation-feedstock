@@ -7,7 +7,7 @@ package:
   version: {{ version }}
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: rust_{{ target_platform }}
@@ -17,15 +17,22 @@ outputs:
       skip: True  # [win and int(float(vc)) != 14]
     requirements:
       run:
-        - rust >={{ version }}
-        - {{ stdlib('c') }}
-        - {{ compiler('c') }}
-        - {{ compiler('cxx') }}
+        - rust =={{ version }}
+        - {{ c_compiler }}_{{ target_platform }} >={{ c_compiler_version }}  # [not win]
+        - {{ cxx_compiler }}_{{ target_platform }} >={{ cxx_compiler_version }}  # [not win]
+        - {{ c_compiler }}_{{ target_platform }}  # [win]
+        - sysroot_{{ target_platform }} >={{ c_stdlib_version }}  # [linux]
+        - macosx_deployment_target_{{ target_platform }} >={{ c_stdlib_version }}  # [osx]
+        - vs_{{ target_platform }} >={{ c_stdlib_version }}  # [win]
     test:
       files:
         - forge_test.sh  # [not win]
+        - test-msvc.bat  # [win]
       commands:
         - time bash ./forge_test.sh  # [not win]
+        - call test-msvc.bat x86_64-pc-windows-msvc X86_64_PC_WINDOWS_MSVC win-64  # [win64]
+        - call test-msvc.bat aarch64-pc-windows-msvc AARCH64_PC_WINDOWS_MSVC win-arm64  # [win and arm64]
+        - cargo --list  # [not win]
 
   - name: rust-gnu_{{ target_platform }}
     build:
