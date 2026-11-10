@@ -17,13 +17,10 @@ outputs:
       skip: True  # [win and int(float(vc)) != 14]
     requirements:
       run:
-        - rust =={{ version }}
-        - {{ c_compiler }}_{{ target_platform }} >={{ c_compiler_version }}  # [not win]
-        - {{ cxx_compiler }}_{{ target_platform }} >={{ cxx_compiler_version }}  # [not win]
-        - {{ c_compiler }}_{{ target_platform }}  # [win]
-        - sysroot_{{ target_platform }} >={{ c_stdlib_version }}  # [linux]
-        - macosx_deployment_target_{{ target_platform }} >={{ c_stdlib_version }}  # [osx]
-        - vs_{{ target_platform }} >={{ c_stdlib_version }}  # [win]
+        - rust >={{ version }}
+        - {{ stdlib('c') }}
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
     test:
       files:
         - forge_test.sh  # [not win]
