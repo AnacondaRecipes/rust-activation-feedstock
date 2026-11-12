@@ -9,8 +9,6 @@ package:
 
 build:
   number: 1
-  script: build.sh  # [unix]
-  script: bld-msvc.bat  # [win]
   skip: True  # [win and int(float(vc)) != 14]
 
 requirements:
