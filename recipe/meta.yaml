@@ -3,50 +3,33 @@
 {% set version = "1.99.1" %}
 
 package:
-  name: rust_{{ target_platform }}-suite
+  name: rust_{{ target_platform }}
   version: {{ version }}
 
 build:
-  number: 1
+  number: 2
+  script: build.sh  # [unix]
+  script: bld-msvc.bat  # [win]
+  skip: True  # [win and int(float(vc)) != 14]
 
-outputs:
-  - name: rust_{{ target_platform }}
-    script: build.sh  # [unix]
-    script: bld-msvc.bat  # [win]
-    build:
-      skip: True  # [win and int(float(vc)) != 14]
-    requirements:
-      run:
-        - rust =={{ version }}
-        - {{ c_compiler }}_{{ target_platform }}
-        - {{ cxx_compiler }}_{{ target_platform }}
-        - sysroot_{{ target_platform }} >={{ c_stdlib_version }}  # [linux]
-        - macosx_deployment_target_{{ target_platform }} >={{ c_stdlib_version }}  # [osx]
-        - vs_{{ target_platform }} >={{ c_stdlib_version }}  # [win]
-    test:
-      files:
-        - forge_test.sh  # [not win]
-        - test-msvc.bat  # [win]
-      commands:
-        - time bash ./forge_test.sh  # [not win]
-        - call test-msvc.bat x86_64-pc-windows-msvc X86_64_PC_WINDOWS_MSVC win-64  # [win64]
-        - call test-msvc.bat aarch64-pc-windows-msvc AARCH64_PC_WINDOWS_MSVC win-arm64  # [win and arm64]
-        - cargo --list  # [not win]
+requirements:
+  run:
+    - rust =={{ version }}
+    - {{ c_compiler }}_{{ target_platform }}
+    - {{ cxx_compiler }}_{{ target_platform }}
+    - sysroot_{{ target_platform }} >={{ c_stdlib_version }}  # [linux]
+    - macosx_deployment_target_{{ target_platform }} >={{ c_stdlib_version }}  # [osx]
+    - vs_{{ target_platform }} >={{ c_stdlib_version }}  # [win]
 
-  - name: rust-gnu_{{ target_platform }}
-    build:
-      skip: True  # [not win64]
-    script: bld-gnu.bat
-    requirements:
-      run:
-        - rust-gnu =={{ version }}
-        - m2w64-toolchain
-    test:
-      files:
-        - forge_test.sh
-      commands:
-        - rustc --help
-        - cargo --help
+test:
+  files:
+    - forge_test.sh  # [not win]
+    - test-msvc.bat  # [win]
+  commands:
+    - time bash ./forge_test.sh  # [not win]
+    - call test-msvc.bat x86_64-pc-windows-msvc X86_64_PC_WINDOWS_MSVC win-64  # [win64]
+    - call test-msvc.bat aarch64-pc-windows-msvc AARCH64_PC_WINDOWS_MSVC win-arm64  # [win and arm64]
+    - cargo --list  # [not win]
 
 about:
   home: https://www.rust-lang.org
@@ -68,4 +51,3 @@ extra:
   skip-lints:
     - compilers_must_be_in_build
     - should_use_compilers
-    - output_script_name_default
