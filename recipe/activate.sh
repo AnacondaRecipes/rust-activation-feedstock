@@ -54,7 +54,7 @@ echo "linker = \"${CONDA_PREFIX}/bin/x86_64-apple-darwin13.4.0-clang\"" >> ${CAR
 echo "[target.i686-unknown-linux-gnu]" >> ${CARGO_CONFIG}
 echo "linker = \"${CONDA_PREFIX}/bin/i686-conda_cos6-linux-gnu-cc\"" >> ${CARGO_CONFIG}
 echo "[target.x86_64-unknown-linux-gnu]" >> ${CARGO_CONFIG}
-echo "linker = \"${CONDA_PREFIX}/bin/x86_64-conda_cos7-linux-gnu-cc\"" >> ${CARGO_CONFIG}
+echo "linker = \"${CONDA_PREFIX}/bin/x86_64-conda-linux-gnu-cc\"" >> ${CARGO_CONFIG}
 echo "[target.powerpc64le-unknown-linux-gnu]" >> ${CARGO_CONFIG}
 echo "linker = \"${CONDA_PREFIX}/bin/powerpc64le-conda_cos7-linux-gnu-cc\"" >> ${CARGO_CONFIG}
 echo "[target.s390x-unknown-linux-gnu]" >> ${CARGO_CONFIG}
@@ -84,7 +84,7 @@ echo "linker = \"${CONDA_PREFIX}/bin/i686-conda_cos6-linux-gnu-cc\"" >> ${CARGO_
 # echo "rustflags = [\"-C\", \"link-arg=-Wl,-rpath-link,${CONDA_PREFIX}/lib\", \"-C\", \"link-arg=-Wl,-rpath,${CONDA_PREFIX}/lib\", \"-C\", \"opt-level=s\", \"-C\", \"link-arg=-static-libgcc\"]" >> ${CARGO_CONFIG}
 echo "rustflags = [\"-C\", \"link-arg=-Wl,-rpath-link,${CONDA_PREFIX}/lib\", \"-C\", \"link-arg=-Wl,-rpath,${CONDA_PREFIX}/lib\", \"-C\", \"opt-level=s\"]" >> ${CARGO_CONFIG}
 echo "[target.x86_64-unknown-linux-gnu]" >> ${CARGO_CONFIG}
-echo "linker = \"${CONDA_PREFIX}/bin/x86_64-conda_cos7-linux-gnu-cc\"" >> ${CARGO_CONFIG}
+echo "linker = \"${CONDA_PREFIX}/bin/x86_64-conda-linux-gnu-cc\"" >> ${CARGO_CONFIG}
 echo "rustflags = [\"-C\", \"link-arg=-Wl,-rpath-link,${CONDA_PREFIX}/lib\", \"-C\", \"link-arg=-Wl,-rpath,${CONDA_PREFIX}/lib\", \"-C\", \"opt-level=s\"]" >> ${CARGO_CONFIG}
 echo "[target.powerpc64le-unknown-linux-gnu]" >> ${CARGO_CONFIG}
 echo "linker = \"${CONDA_PREFIX}/bin/powerpc64le-conda_cos7-linux-gnu-cc\"" >> ${CARGO_CONFIG}

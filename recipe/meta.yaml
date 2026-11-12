@@ -8,37 +8,21 @@ package:
   version: {{ version }}
 
 build:
-  number: 0
+  number: 1
+  skip: True  # [win and int(float(vc)) != 14]
 
-outputs:
-  - name: rust-nightly_{{ target_platform }}
-    script: build.sh  # [unix]
-    script: bld-msvc.bat  # [win]
-    build:
-      skip: True  # [win and int(float(vc)) != 14]
-    requirements:
-      run:
-        - rust-nightly >={{ version }}
-        - {{ stdlib('c') }}
-        - {{ compiler('c') }}
-        - {{ compiler('cxx') }}
-    test:
-      files:
-        - forge_test.sh  # [not win]
-      commands:
-        - time bash ./forge_test.sh  # [not win]
-  - name: rust-nightly-gnu_{{ target_platform }}  # [win]
-    script: bld-gnu.bat  # [win]
-    requirements:  # [win]
-      run:  # [win]
-        - rust-gnu-nightly >={{ version }}  # [win]
-        - m2w64-toolchain  # [win]
-    test:  # [win]
-      files:  # [win]
-        - forge_test.sh  # [win]
-      commands:  # [win]
-        - rustc --help  # [win]
-        - cargo --help  # [win]
+requirements:
+  run:
+    - rust-nightly >={{ version }}
+    - {{ stdlib('c') }}
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+
+test:
+  files:
+    - forge_test.sh  # [not win]
+  commands:
+    - time bash ./forge_test.sh  # [not win]
 
 about:
   home: https://www.rust-lang.org
@@ -60,4 +44,3 @@ extra:
   skip-lints:
     - compilers_must_be_in_build
     - should_use_compilers
-    - output_script_name_default
